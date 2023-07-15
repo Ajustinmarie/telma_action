@@ -1,0 +1,228 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PageAccueilConnexionController!{% endblock %}
+
+{% block body %}
+<style>
+  /*  .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; } */
+</style>
+
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sélectionner tous les éléments input et select
+            const inputElements = document.querySelectorAll('input');
+            const selectElements = document.querySelectorAll('select');
+
+            // Ajouter l'attribut "required" à tous les éléments input
+            inputElements.forEach((input) => {
+                input.setAttribute('required', 'required');
+            });
+
+            // Ajouter l'attribut "required" à tous les éléments select
+            selectElements.forEach((select) => {
+                select.setAttribute('required', 'required');
+            });
+        });
+    </script>
+
+
+    <h1>Bonjour Justin ✅</h1>
+    
+    <h5>Bienvenue dans ton espace compte. C'est dans cet espace que vous allez pouvoir gerer l'ensemble de vos taches </h5>
+
+    <!-- -->
+
+<div class="contenu">
+
+
+<div class="class="conteneur">
+
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <!-- <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{{path('page_accueil_connexion')}}">Accueil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{path('menu_plan_actions')}}">Plan d'actions</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{path('parametre')}}">Paramètres</a>
+                    </li>
+
+</div>
+
+
+</div class="class="conteneur">
+            <div class="class="conteneur">
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+            <div>
+                   <form action="" method="POST">
+
+                            <div class="col">
+
+                                        <div class="col" style="align-items:center">
+                                        <p>
+                                        {{notification}}
+                                        </p>
+                                        </div>
+
+                            </div>
+
+
+
+                            <div class="form-row">
+
+                                                    <div class="col">
+                                                            <p>Type d'audit
+                                                            <select name="typeaudit" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                            {% for type_audit in type_audits %} 
+                                                            <option {% if typeAudit==type_audit.type_audit %} selected {% else %} {% endif %} value="{{type_audit.type_audit}}">{{type_audit.type_audit}}</option>
+                                                            {% endfor %}
+                                                            </select>
+                                                            </p>
+                                                    </div>
+
+                                                    <div class="col">
+                                                  
+                                                    <p>Date de début
+                                                    <input type="date" name="datedebut"  value="{{DateDebut}}" class="form-control">
+                                                    </p>
+                                                    </div>
+
+
+                                                    <div class="col">
+                                                    <p>Date de fin
+                                                    <input type="date" name="datefin" value="{{Datefin}}" class="form-control">
+                                                    </p>
+                                                    </div>
+                            
+                            </div>
+
+
+                            <div class="col">
+
+                                        <div class="col">
+                                        <p>
+                                        <input type="submit" value="soumettre " class="form-control">
+                                        </p>
+                                        </div>
+
+                            </div>
+
+                   </form>
+            </div>
+
+
+         
+             <div>
+             <canvas id="myChart"></canvas>
+             </div> 
+
+            <br/><br/>
+           
+
+             <div> 
+            <!-- <canvas id="myChar"></canvas> -->
+             </div>     
+
+             
+               <script>
+                            const ctx = document.getElementById('myChart');
+
+                            new Chart(ctx, {
+                            
+                                data: {
+                                datasets: [{
+                                    type: 'bar',
+                                    label: 'Nombres d\'audits réalisés',
+                                    data: [ {{totalAuditMois1}}, 
+                                            {{totalAuditMois2}}, 
+                                            {{totalAuditMois3}}, 
+                                            {{totalAuditMois4}}, 
+                                            {{totalAuditMois5}}, 
+                                            {{totalAuditMois6}}, 
+                                            {{totalAuditMois7}}, 
+                                            {{totalAuditMois8}}, 
+                                            {{totalAuditMois9}}, 
+                                            {{totalAuditMois10}}, 
+                                            {{totalAuditMois11}},
+                                            {{totalAuditMois12}}],
+                                },{
+                                    type: 'line',
+                                    label: 'Objectif',
+                                    data: [2,2,2,2,2,2,2,2,2,2,2,2],
+                                }],
+                                labels: ['January', 'February', 'March', 'April','Mai','juin','juillet','Aout','septembre', 'Octobre', 'Novembre', 'Decembre'],
+                                },
+                                options: {
+                                scales: {
+                                    y: {
+                                    beginAtZero: true
+                                    }
+                                }
+                                }
+                            });
+                </script>
+
+
+                  <script>
+                            const ctx2 = document.getElementById('myChar');
+
+                            new Chart(ctx2, {
+                            
+                                data: {
+                                datasets: [{
+                                    type: 'bar',
+                                    label: 'Nombres d\'audits réalisés',
+                                    data: [ {{totalAuditMois1}}, 
+                                            {{totalAuditMois2}}, 
+                                            {{totalAuditMois3}}, 
+                                            {{totalAuditMois4}}, 
+                                            {{totalAuditMois5}}, 
+                                            {{totalAuditMois6}}, 
+                                            {{totalAuditMois7}}, 
+                                            {{totalAuditMois8}}, 
+                                            {{totalAuditMois9}}, 
+                                            {{totalAuditMois10}}, 
+                                            {{totalAuditMois11}},
+                                            {{totalAuditMois12}}],
+                                },{
+                                    type: 'line',
+                                    label: 'Objectif',
+                                    data: [2,2,2,2,2,2,2,2,2,2,2,2],
+                                }],
+                                labels: ['January', 'February', 'March', 'April','Mai','juin','juillet','Aout','septembre', 'Octobre', 'Novembre', 'Decembre'],
+                                },
+                                options: {
+                                scales: {
+                                    y: {
+                                    beginAtZero: true
+                                    }
+                                }
+                                }
+                            });
+                </script>
+
+
+
+                
+                   
+  </div>
+
+</div>
+
+
+
+{% endblock %}

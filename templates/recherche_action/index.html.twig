@@ -1,0 +1,289 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RechercheActionController!{% endblock %}
+
+{% block body %}
+    <link href="{{asset('assets/css/css_recherche.css')}}" rel="stylesheet">
+                                    
+ 
+<style>
+
+#conteneur{
+    display:flex;
+    flex-direction:column;
+}
+
+.contenu2{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    
+}
+
+
+    /* CSS pour rendre le tableau responsive */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    /* Appliquer un style différent pour les petits écrans */
+    @media screen and (max-width: 600px) {
+      table {
+        border: none;
+      }
+      
+      th, td {
+        display: block;
+        width: 100%;
+      }
+    }
+
+</style>
+
+    <h1>Bonjour Justin ✅</h1>
+    
+    <h5>Bienvenue dans ton espace compte. C'est dans cet espace que vous allez pouvoir gerer l'ensemble de vos taches </h5>
+
+ <div id="conteneur">       
+
+                    <div class="contenu">
+                               <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                <!-- <a class="navbar-brand" href="#">Navbar</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button> -->
+                              
+                                <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                <a class="nav-link" href="{{path('page_accueil_connexion')}}">Accueil <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{path('menu_plan_actions')}}">Plan d'actions</a>
+                                </li>
+
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{path('parametre')}}">Paramètres</a>
+                                </li>
+
+                                
+                    </div>
+
+                    <div class="contenu contenu2">                          
+                                    <table>
+                                    <thead>
+                                    <!--  <tr>
+                                        <th>Colonne 1</th>
+                                        <th>Colonne 2</th>
+                                        <th>Colonne 3</th>
+                                    </tr>
+                                    -->
+                                    </thead>
+                                    <tbody>
+
+                                    <form action="#" method="POST">
+                                                <tr>
+                                                            <td><p> Type audit:                                         
+                                                         
+                                                            <select class="form-select" aria-label="Default select example" name="type_audit">
+                                                            
+                                                           
+                                                            {% for Type_audit in Type_audits %} 
+                                                             
+                                                            
+                                                            <option {% if typeAu==Type_audit.type_audit %} selected {% else %} {% endif %}>{{Type_audit.type_audit}}</option>
+
+
+                                                            {% endfor %}
+
+                                                            </select>   
+                                                            </p>                                    
+                                                            
+                                                            </td>
+
+                                                          
+
+                                                            <td><p> Créateur de l'action: 
+                                                                                                                  
+                                                           <select class="form-select" aria-label="Default select example" name="createur_action">
+                                                        
+                                                            <option value="" >Créateur de l'action</option>
+
+                                                            {% for  liste_user in  liste_users %}
+                                                            <option value="{{ liste_user.id}}" {% if createur_action==liste_user.id %} selected {% else %} {% endif %}>{{liste_user.name}} {{liste_user.firstname}}</option>
+                                                            {% endfor %}
+                                                            
+                                                            </select> 
+                                                            
+                                                            
+                                                            </td>
+
+
+
+
+
+                                                            <td><p> Zone auditée: 
+                                                             
+                                                           
+                                                            <select class="form-select" aria-label="Default select example" name="zone_audit">
+                                                        
+                                                            <option value="" >Zone auditée</option>
+
+                                                            {% for zone_auditee in zone_auditees %}
+                                                            <option value="{{zone_auditee.zone_auditee}}" {% if zoneAud==zone_auditee.zone_auditee%} selected {% else %} {% endif %}>{{zone_auditee.zone_auditee}}</option>
+                                                            {% endfor %}
+                                                            
+                                                            </select> 
+                                                                                                
+                                                            </p></td>
+
+                                                             </tr>
+                                                             <tr>
+                                                            <td><p> Pilote de l'action: 
+                                                          
+                                                            <select class="form-select" aria-label="Default select example" name="pilote_action">
+                                                            
+                                                             <option value="" >Pilote de l'action</option>
+                                                        
+                                                            {% for pilote_action in pilote_actions %}
+                                                            <option value="{{pilote_action.pilote_de_laction}}" {% if pil_action==pilote_action.pilote_de_laction %} selected {% else %} {% endif %} >{{pilote_action.pilote_de_laction}}</option>
+                                                            {% endfor %}                                     
+                                                        
+                                                        
+                                                            </select>     
+
+                                                            </p></td>
+                                                            <td><p> Remarques: <input name="remarques"  {% if remarques != null %} value="{{remarques}}" {% else %}  {% endif %} type="text" placeholder=""/> </p></td>
+                                                            <td><p> Priorité:                                                          
+
+                                                            <select class="form-select" aria-label="Default select example" name="priorite">     
+
+                                                               <option value="" > Liste des priorités</option>  
+
+                                                            {% for priorite in priorites %}
+                                                            <option value="{{priorite.priorite}}"  {% if prior==priorite.priorite %} selected {% else %} {% endif %}>{{priorite.priorite}}</option>                                                          
+                                
+                                                            {% endfor %}
+                                                            
+                                                            </select>  
+                                                            </p></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                            <td><p> Status:                                         
+                                                          
+                                                            <select class="form-select" aria-label="Default select example" name="status">
+                                                            
+                                                              <option value="" >Status</option>  
+                                                            {% for statu in status %}
+                                                            <option  value="{{statu.status}}" {% if stat==statu.status %} selected {% else %} {% endif %}>{{statu.status}}</option>
+                                                            {% endfor %}        
+                                                            
+                                                            </select>  
+                                                            </p></td>
+                                                        
+                                                            </p></td>
+                                                            
+                                                            <td><p> ID: <input type="number" {% if id != null %} value="{{id}}" {% else %}  {% endif %} name="ID" placeholder=""/></p></td>
+                                                            <td><p> Type de risque:                                                              
+                                                           
+                                                            <select class="form-select" aria-label="Default select example" name="type_de_risque">
+                                                            
+
+                                                               <option value="" >Type de risque</option>  
+                                                           
+                                                            {% for typeDeRisque in typeDeRisques %}
+                                                            <option value="{{typeDeRisque.type_de_risques}}" {% if Type_de_ri==typeDeRisque.type_de_risques %} selected {% else %} {% endif %}>{{typeDeRisque.type_de_risques}}</option>
+                                                            {% endfor %}        
+                                                            
+                                                            </select>  
+                                                            </p></td>
+                                                            
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><p> Délais: <input type="date"  {% if del != null %} value="{{del}}" {% else %}  {% endif %} name="delais" placeholder=""/></p></td> 
+                                                            <td><p> Date début période: <input {% if date_debut != null %} value="{{date_debut}}" {% else %}  {% endif %} name="date_debut_periode" type="date" placeholder=""/></p></td> 
+                                                            <td><p> Date de fin période: <input {% if date_fin != null %} value="{{date_fin}}" {% else %}  {% endif %} name="date_fin_periode" type="date" placeholder=""/></p></td> 
+                                                                                                
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td colspan="3"><p style="text-align:center"><input type="submit" name="envoie" placeholder="" value="Rechercher"/></p></td>
+                                                            <td></td>
+                                           </tr>
+                                     </form>
+                                    </tbody>
+                                </table> 
+                    </div>
+
+                      <h1 style="text-align:center">Résultats de recherche</h1>
+                     
+                  
+                  {% if  actions_recherches==null %}
+                    
+                     <p>Aucune actions ne correspond</p>
+               
+                  {% elseif actions_recherches=='nope' %}
+  
+                       <p>Un des deux champs entre "Remarques" ou "ID" doit être vide pour avoir une recherche</p>
+
+                  {% else %}
+
+                                        <!-- A REMPLACER -->
+                                        <div class="contenu">
+                                                   <!--  {{dump(actions_recherches)}}  -->
+
+                                                                                                          
+                                                    {% for actions_recherche in actions_recherches %}                                   
+                                                    
+
+                                                        <div class="entry">
+                                                            <div class="left">
+                                                                
+                                                             
+                                                                {% if actions_recherche.illustration == null %}
+                                                                <a href="{{path('modification_fiche_action', { 'id' : actions_recherche.id }) }}"><img src="../images/aucune_image.jpg" /></a>
+                                                                {% else %}
+                                                                 <a href="{{path('modification_fiche_action', { 'id' : actions_recherche.id }) }}"><img src="../images/{{actions_recherche.illustration}}" /></a>
+                                                                {% endif %}                                       
+
+
+                                                                <p>ID: {{actions_recherche.id}} | Date de l'audit: {{actions_recherche.date_de_laudit|date('d-m-Y')}}  | Type de risque: {{actions_recherche.type_de_risques}}  | Type d'audit: {{actions_recherche.type_audit}}</p>
+                                                                <p class="pilote">Pilote de l'action: {{actions_recherche.pilote_de_laction}}</p>
+                                                                <h2>Remarques / commentaires / constats d'écarts</h2>
+                                                                
+                                                                <!--pour tronquer une valeur de caractere  -->
+                                                                {% set maxLength = 50 %}
+                                                                {% if actions_recherche.remarques_commentaires|length > maxLength %}
+                                                                    {{ actions_recherche.remarques_commentaires|slice(0, maxLength) ~ '...' }}
+                                                                {% else %}
+                                                                    {{ actions_recherche.remarques_commentaires }}
+                                                                {% endif %}    
+                                                                <!--pour tronquer une valeur de caractere  -->                               
+                                                        
+                                                            </div>
+                                                            <div class="right">
+                                                                <h3>{{actions_recherche.priorite}}</h3>
+                                                                <p>Zone: {{actions_recherche.zone_auditee}}</p>
+                                                                <p>Status: {{actions_recherche.status}}</p>
+                                                                <p>Délais: {{actions_recherche.delais|date('d-m-Y')}} </p>
+                                                            </div>
+                                                        </div>
+
+                                                {% endfor %}
+                                                
+                                        </div>
+                                        <!-- A REMPLACER -->
+
+                       {% endif %}
+
+</div>
+
+{% endblock %}

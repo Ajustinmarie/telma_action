@@ -12,8 +12,35 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+           <!-- Bootstrap core CSS -->
+    <link href="{{asset('assets/css/bootstrap-grid.css')}}" rel="stylesheet">
+     <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet">
+     
+     <link href="{{asset('assets/css/css_recherche.css')}}" rel="stylesheet">
+
+
+
+
+
     </head>
+   
+
+
     <body>
-        {% block body %}{% endblock %}
+         <div class="container">
+        {% block body %}
+       
+        
+        
+        {% endblock %}
+         </div>
+   
+     
+
+
+
+
+      <link href="{{asset('assets/js/bootstrap.js')}}" rel="stylesheet">
     </body>
 </html>
